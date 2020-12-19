@@ -14,17 +14,35 @@ import java.util.logging.Logger;
  * @author AbdallaEssam
  */
 public class Barrier_sem extends Barrier{
+    private int i;
+    private int max;
     private final Semaphore mutex;
     private final Semaphore blockerSemaphore;
-    
+
     public Barrier_sem(int waitingCount){
         super(waitingCount);
         mutex = new Semaphore(1);
         blockerSemaphore = new Semaphore(0);
     }
-    
+
+
     public void barrierPoint(){
-        
+
+        try {
+            mutex.acquire();
+            i++;
+       if(i == max)
+       {
+            blockerSemaphore.release();
+       }
+        mutex.release();
+
+         blockerSemaphore.acquire();
+         blockerSemaphore.release();
+
+}
+        catch (InterruptedException ex){
+            Logger.getLogger(Barrier_sem.class.getName()).log(Level.SEVERE , null ,ex);
+        }
     }
-    
 }

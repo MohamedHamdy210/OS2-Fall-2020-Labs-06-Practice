@@ -17,6 +17,6 @@ public abstract class Barrier {
         this.maxWaiting = maxWaiting;
         noOfWatingThreads=0;
     }
-    
-    public abstract void barrierPoint();        
+
+    public abstract void barrierPoint();
 }

@@ -28,7 +28,7 @@ public class PetersonSolutionDriver {
                 Thread t1 = new Thread(sol, "1");
                 t0.start();
                 t1.start();
-                //wait till t0 and t1 terminate 
+                //wait till t0 and t1 terminate
                 t0.join();
                 t1.join();
                 System.out.println("Final Count: " + sol.getCount());

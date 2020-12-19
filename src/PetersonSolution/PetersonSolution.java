@@ -32,15 +32,20 @@ public class PetersonSolution implements Runnable {
         turn = 1 - threadId;
 
         while (flag[turn] && turn == 1 - threadId) {
-            //do nothing 
+            //do nothing
             System.out.println(threadId + " do nothing");
         }
-        
-        //critical section      
+
+        //critical section
         if (threadId == 0) {
-            count = count + 1;
-        } else {
-            count = count - 1;
+            synchronized(this){
+            count=count+1;
+        }
+        }
+        else{
+            synchronized(this){
+                count=count-1;
+            }
         }
         System.out.println("T" + threadId + " COUNT:" + count);
         //exit section
